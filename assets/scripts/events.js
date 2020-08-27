@@ -62,6 +62,7 @@ const onNewGame = function (event) {
   // use getFormFields to get data from the form
   const data = getFormFields(form)
   // send data in AJAX request to the API
+  api.getGames(data)
   api.newGame(data)
     // handle successul response
     .then(ui.onNewGameSuccess)
