@@ -9,7 +9,8 @@ const onSignUpFailure = function () {
 }
 const onSignInSuccess = function (response) {
   store.user = response.user
-  $('#message').text('Thanks for signing in!' + response.user.email)
+  $('#message').text('Thanks for signing in ' + response.user.email + '! You have played')
+  // + games.length()
   $('#sign-in-form').trigger('reset')
   $('#change-password-form').show()
   $('#sign-out').show()
@@ -42,7 +43,7 @@ const onSignOutFailure = function () {
 }
 const onNewGameSuccess = function (response) {
   store.user = response.user
-  $('#message').text('Let\'s Go' + response.user.email)
+  $('#message').text('Let\'s Go!')
   $('#change-password-form').show()
   $('#sign-out').show()
   $('#new-game').hide()

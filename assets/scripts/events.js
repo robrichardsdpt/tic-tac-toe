@@ -58,6 +58,15 @@ const onSignOut = function (event) {
 
 const onNewGame = function (event) {
   event.preventDefault()
+  const form = event.target
+  // use getFormFields to get data from the form
+  const data = getFormFields(form)
+  // send data in AJAX request to the API
+  api.newGame(data)
+    // handle successul response
+    .then(ui.onNewGameSuccess)
+    // handle failed response
+    .catch(ui.onNewGameFailure)
 }
 
 module.exports = {
