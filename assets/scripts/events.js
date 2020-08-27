@@ -70,10 +70,18 @@ const onNewGame = function (event) {
     .catch(ui.onNewGameFailure)
 }
 
+const onCellClick = function (event) {
+  event.preventDefault()
+  console.log(event.target)
+  const dct = $(event.target).attr('data-cell-index')
+  console.log(dct)
+}
+
 module.exports = {
   onSignUp,
   onSignIn,
   onChangePassword,
   onSignOut,
-  onNewGame
+  onNewGame,
+  onCellClick
 }

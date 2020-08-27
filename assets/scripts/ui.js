@@ -49,7 +49,7 @@ const onSignOutFailure = function () {
 const onNewGameSuccess = function (response) {
   store.user = response.user
   $('#message').text('Let\'s Go!')
-  $('#total-games-message').text(`You have played ${store.gamesStored.games}`)
+//  $('#total-games-message').text(`You have played ${store.gamesStored.games}`)
   $('#change-password-form').show()
   $('#sign-out').show()
   $('#new-game').hide()
