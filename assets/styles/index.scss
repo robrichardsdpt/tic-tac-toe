@@ -1,1 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
+
+.col {
+  background-color: lightsteelblue;
+  height: 250px;
+}
+
+.col:hover{
+  background-color: #000080;
+}

@@ -56,9 +56,14 @@ const onSignOut = function (event) {
     .catch(ui.onSignOutFailure)
 }
 
+const onNewGame = function (event) {
+  event.preventDefault()
+}
+
 module.exports = {
   onSignUp,
   onSignIn,
   onChangePassword,
-  onSignOut
+  onSignOut,
+  onNewGame
 }
