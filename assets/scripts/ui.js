@@ -54,13 +54,21 @@ const onNewGameSuccess = function (response) {
   $('#sign-out').show()
   $('#new-game').hide()
   $('#tic-tac-toe-board').show()
-  let player = 'X'
+  const player = 'X'
   console.log(player)
 //  $('#sign-up-form').hide()
 //  $('#sign-in-form').hide()
 }
 const onNewGameFailure = function () {
   $('#message').text('New game not started. Please try again')
+}
+
+const onUpdateGameSuccess = function (reponse) {
+  store.user = response.user
+}
+
+const onUpdateGameFailure = function () {
+
 }
 
 module.exports = {
