@@ -1,4 +1,10 @@
 @import '~bootstrap/scss/bootstrap';
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Permanent+Marker&display=swap');
+
+.nav{
+  background: linear-gradient(#191970, #3D59AB);
+  color: white;
+}
 .container {
   // set the board container to take up 100% of the viewport height
   // in this case that is the height of the browser
@@ -15,6 +21,10 @@
 }
 
 .box {
+  font-family: 'Permanent Marker', cursive;
+  font-size: 12vh;
+  color: maroon;
+
   background: white;
   // set the min height for each box to be a third of the parent's (.board) width
   // the calc method will take 100% of the parent's height and divide it by 3
@@ -38,7 +48,7 @@
   // place the shadow 2px to the right and 2px below the text-table
   // shadow color to be black & be 25% opacity
 
-  text-shadow: 2px 2px rgba(0, 0, 0, .25);
+  text-shadow: 5px 5px rgba(0, 0, 0, .25);
 
   // prevent the user from selecting the text
 

@@ -59,7 +59,7 @@ const getGames = function (data) {
   })
 }
 
-const updateGame = function (cell, player) {
+const updateGame = function (cell, player, over) {
   return $.ajax({
     url: config.apiUrl + '/games/' + store.game,
     method: 'PATCH',
@@ -78,6 +78,16 @@ const updateGame = function (cell, player) {
   })
 }
 
+const destroyGame = function (data) {
+  return $.ajax({
+    url: config.apiUrl + '/games/' + store.game,
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Bearer ' + store.user.token
+    }
+  })
+}
+
 module.exports = {
   signUp,
   signIn,
@@ -85,5 +95,6 @@ module.exports = {
   signOut,
   newGame,
   getGames,
-  updateGame
+  updateGame,
+  destroyGame
 }

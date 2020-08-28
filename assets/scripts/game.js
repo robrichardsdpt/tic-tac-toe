@@ -5,7 +5,7 @@ const store = require('./store')
 const events = require('./events')
 // to know where or not the game is 'on/off' or over
 let gameOn = true
-
+let over = false
 let player = 'X'
 
 // to identify the player that is currently going
@@ -32,7 +32,7 @@ const checkBoard = [
 const cellClick = function (cellIndex, board, gameStatus, eventTarget) {
   if (board[cellIndex] === '' && gameStatus) {
     board[cellIndex] = player
-    $(eventTarget).text(`${player} and ${cellIndex}`)
+    $(eventTarget).text(`${player}`)
     console.log(board)
     //    checkWin(board)
     //    api.updateGame(user, cellIndex, gameStatus)
@@ -41,22 +41,25 @@ const cellClick = function (cellIndex, board, gameStatus, eventTarget) {
     console.log('click not functional')
     // have to figure out how to stop player function
   }
+  indexArray(board)
 }
 
+let xCells = []
+let oCells = []
 // convert into array of another array
-const indexArray = function (gameboard) {
-  for (let i = 0; i < array.length; i++) {
-    let xCells = []
-    let oCells = []
-    if (gameboard[i] === 'X') {
+const indexArray = function (arr) {
+  for (let i = 0; i < arr.length; i++) {
+
+    if (arr[i] === 'X') {
       xCells.push(i)
     }
-    if (gameboard[i] === 'O') {
+    if (arr[i] === 'O') {
       oCells.push(i)
     }
 //    checkWin(xCells)
 //    checkWin(oCells)
   }
+  console.log(xCells)
 }
 /* const checkWin (gameArray, checkBoard)
   for (let j = 0; j < gameArray)
@@ -70,5 +73,5 @@ const indexArray = function (gameboard) {
 module.exports = {
   cellClick,
   gameOn,
-  gameBoard
+  gameBoard, over
 }

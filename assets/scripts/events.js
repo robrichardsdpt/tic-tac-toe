@@ -82,7 +82,7 @@ const onCellClick = function (event) {
   // gameEvents.playerTurn(gameEvents.player)
   console.log(gameEvents.player)
   gameEvents.cellClick(/* gameEvents.player */ dataCellIndexInt, gameEvents.gameBoard, gameEvents.gameOn, event.target)
-  api.updateGame(dataCellIndexInt, gameEvents.player)
+  api.updateGame(dataCellIndexInt, gameEvents.player, gameEvents.over)
     .then(ui.onUpdateGameSuccess)
     .catch(ui.onUpdateGameFailure)
 }
