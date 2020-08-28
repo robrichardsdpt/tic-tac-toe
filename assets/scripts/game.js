@@ -6,7 +6,7 @@ let gameOn = true
 // to identify the player that is currently going
 
 // current game board.  this will populate with our clicks/moves
-let gameBoard = ["","","","","","","","",""]
+let gameBoard = ['', '', '', '', '', '', '', '', '']
 
 // scenarios that determine winner
 const checkWin = [
@@ -34,10 +34,17 @@ const playerTurn = function (player) {
 // make sure that you do not double cellClick
 // make sure that you capture data from each cell with attr.
 
-const cellClick = function (cellIndex) {
-
+const cellClick = function (player, cellIndex, board, gameStatus) {
+  if (board[cellIndex] === '' && gameStatus) {
+    board[cellIndex] = player
+  } else {
+    console.log('click not functional')
+  }
 }
 
 module.exports = {
-  playerTurn
+  playerTurn,
+  cellClick,
+  gameOn,
+  gameBoard
 }

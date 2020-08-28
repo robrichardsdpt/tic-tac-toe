@@ -80,6 +80,7 @@ const onCellClick = function (event) {
   //  gameEvents.cellClick(dataCellIndexInt)
   gameEvents.playerTurn(ui.player)
   console.log(ui.player)
+  gameEvents.cellClick(ui.player, dataCellIndexInt, gameEvents.gameBoard, gameEvents.gameOn)
 }
 
 module.exports = {
