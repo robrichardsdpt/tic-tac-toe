@@ -2,6 +2,8 @@
 const getFormFields = require('./../../lib/get-form-fields')
 const api = require('./api')
 const ui = require('./ui')
+const gameEvents = require('./game')
+
 const onSignUp = function (event) {
   event.preventDefault()
   // get the form from the event
@@ -72,9 +74,12 @@ const onNewGame = function (event) {
 
 const onCellClick = function (event) {
   event.preventDefault()
-  console.log(event.target)
-  const dct = $(event.target).attr('data-cell-index')
-  console.log(dct)
+  const dataCellIndex = $(event.target).attr('data-cell-index')
+  const dataCellIndexInt = parseInt(dataCellIndex)
+  console.log(dataCellIndexInt)
+  //  gameEvents.cellClick(dataCellIndexInt)
+  gameEvents.playerTurn(ui.player)
+  console.log(ui.player)
 }
 
 module.exports = {

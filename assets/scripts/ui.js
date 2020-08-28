@@ -54,6 +54,8 @@ const onNewGameSuccess = function (response) {
   $('#sign-out').show()
   $('#new-game').hide()
   $('#tic-tac-toe-board').show()
+  let player = 'X'
+  console.log(player)
 //  $('#sign-up-form').hide()
 //  $('#sign-in-form').hide()
 }
