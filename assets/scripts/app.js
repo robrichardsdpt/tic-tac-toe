@@ -11,13 +11,13 @@ $(() => {
   $('#change-password-form').hide()
   $('#sign-out').hide()
   $('#new-game').hide()
-  $('#tic-tac-toe-board').hide()
+  //$('.tic-tac-toe-board').hide()
   $('#sign-up-form').on('submit', authEvents.onSignUp)
   $('#sign-in-form').on('submit', authEvents.onSignIn)
   $('#change-password-form').on('submit', authEvents.onChangePassword)
   $('#sign-out').on('submit', authEvents.onSignOut)
   $('#new-game').on('submit', authEvents.onNewGame)
-  $('.col').on('click', authEvents.onCellClick)
+  $('.box').one('click', authEvents.onCellClick)
 
 /*
   $('#col0').on('click', gameEvents.onGameClick0)

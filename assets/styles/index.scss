@@ -1,10 +1,66 @@
 @import '~bootstrap/scss/bootstrap';
-
-.col {
-  background-color: lightsteelblue;
-  height: 250px;
+.container {
+  // set the board container to take up 100% of the viewport height
+  // in this case that is the height of the browser
+  height: 100vh;
+  // vh = viewport height
 }
 
-.col:hover{
-  background-color: #000080;
+.board {
+  // set the max height and the mid width of the board
+  // use a method called 'calc' to subtract some space around each side
+  max-height: calc(100vh - 200px);
+  min-width: calc(100vh - 600px);
+
+}
+
+.box {
+  background: white;
+  // set the min height for each box to be a third of the parent's (.board) width
+  // the calc method will take 100% of the parent's height and divide it by 3
+  min-height: calc(100% / 3);
+
+  // set each box to have 'display' be 'flex' so we can center the content (x and o) inside the box
+
+  display: flex;
+
+  // center the content along the main axis (L -> R)
+
+  justify-content: center;
+
+  // center the content along the cross-axis (top to bottom)
+
+  align-items: center;
+
+  // use 'vh' to have the font size change as the viewport height changes
+
+  // add a shadow to x's and o's
+  // place the shadow 2px to the right and 2px below the text-table
+  // shadow color to be black & be 25% opacity
+
+  text-shadow: 2px 2px rgba(0, 0, 0, .25);
+
+  // prevent the user from selecting the text
+
+  user-select: none;
+
+  // we want to have borders on the right of each box and the bottom of each box
+  border-right: 3px solid black;
+  border-bottom: 3px solid black;
+
+  // select the 3 right boxes using ': nth-child' - this will select elements based on their position to their siblings
+  // pass :nth-child() the value '3n' which will select every 3rd box
+  // without sass .box:nth-child(3n)
+  &:nth-child(3n) {
+    border-right: 0px;
+  }
+
+  // select the three bottom boxes using :nth-last-child which selects elements based on position  **counting from the end**
+  &:nth-last-child(-1n + 3) {
+    border-bottom: 0px;
+  }
+  &:hover {
+    background-color: lightsteelblue;
+    cursor: pointer;
+  }
 }

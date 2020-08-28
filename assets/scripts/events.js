@@ -48,11 +48,11 @@ const onChangePassword = function (event) {
 const onSignOut = function (event) {
   event.preventDefault()
   // get the form from the event
-  //  const form = event.target
+  const form = event.target
   // use getFormFields to get data from the form
-  //  const data = getFormFields(form)
+  const data = getFormFields(form)
   // send data in AJAX request to the API
-  api.signOut()
+  api.signOut(data)
     // handle successul response
     .then(ui.onSignOutSuccess)
     // handle failed response
@@ -64,6 +64,7 @@ const onNewGame = function (event) {
   const form = event.target
   // use getFormFields to get data from the form
   const data = getFormFields(form)
+  let player = 'X'
   // send data in AJAX request to the API
   api.getGames(data)
   api.newGame(data)
@@ -78,9 +79,12 @@ const onCellClick = function (event) {
   const dataCellIndex = $(event.target).attr('data-cell-index')
   const dataCellIndexInt = parseInt(dataCellIndex)
   console.log(dataCellIndexInt)
-  gameEvents.playerTurn(ui.player)
-  console.log(ui.player)
-  gameEvents.cellClick(ui.player, dataCellIndexInt, gameEvents.gameBoard, gameEvents.gameOn, event.target)
+  // gameEvents.playerTurn(gameEvents.player)
+  console.log(gameEvents.player)
+  gameEvents.cellClick(/* gameEvents.player */ dataCellIndexInt, gameEvents.gameBoard, gameEvents.gameOn, event.target)
+  api.updateGame(dataCellIndexInt, gameEvents.player)
+    .then(ui.onUpdateGameSuccess)
+    .catch(ui.onUpdateGameFailure)
 }
 
 module.exports = {

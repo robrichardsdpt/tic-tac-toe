@@ -59,20 +59,20 @@ const getGames = function (data) {
   })
 }
 
-const updateGame = function (gameID, token, cell, player, gameStatus) {
+const updateGame = function (cell, player) {
   return $.ajax({
-    url: config.apiUrl + '/games/' + gameID,
+    url: config.apiUrl + '/games/' + store.game,
     method: 'PATCH',
     headers: {
-      Authorization: 'Bearer ' + token
+      Authorization: 'Bearer ' + store.user.token
     },
     data: {
       game: {
         cell: {
-          index: cell,
-          value: player
+          index: `${cell}`,
+          value: `${player}`
         },
-        over: gameStatus
+        over: false
       }
     }
   })

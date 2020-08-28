@@ -12,7 +12,6 @@
       <script src="public/application.js" type="text/javascript" charset="utf-8" defer></script>
     </head>
     <body>
-      <div class="container">
       <h1>Tic-tac-toe</h1>
       <h3 id="message"></h3>
       <p id="total-games-message"><p>
@@ -63,25 +62,20 @@
         </form>
       </section>
 
-      <div id= "tic-tac-toe-board">
-        <h3 id ="player-turn"></h3>
-      <div class= "row">
-        <div class= "col" id = "col0" data-cell-index= "0">CELL 0</div>
-        <div class= "col" id = "col1" data-cell-index= "1">CELL 1</div>
-        <div class= "col" id = "col2" data-cell-index= "2">CELL 2</div>
-      </div>
-      <div class= "row">
-        <div class= "col" id = "col3" data-cell-index="3">CELL 3</div>
-        <div class= "col" id = "col4" data-cell-index="4">CELL 4</div>
-        <div class= "col" id = "col5" data-cell-index="5">CELL 5</div>
-      </div>
-      <div class= "row">
-        <div class= "col" id = "col6" data-cell-index= "6">CELL 6</div>
-        <div class= "col" id = "col7" data-cell-index= "7">CELL 7</div>
-        <div class= "col" id = "col8" data-cell-index= "8">CELL 8</div>
-      </div>
-      </div>
+      <div class= "tic-tac-toe-board container">
+      <div class= "row board h-100">
+        <div class= "col-4 box" id = "col0" data-cell-index= "0">CELL 0</div>
+        <div class= "col-4 box" id = "col1" data-cell-index= "1">CELL 1</div>
+        <div class= "col-4 box" id = "col2" data-cell-index= "2">CELL 2</div>
 
-    </div>
+        <div class= "col-4 box" id = "col3" data-cell-index="3">CELL 3</div>
+        <div class= "col-4 box" id = "col4" data-cell-index="4">CELL 4</div>
+        <div class= "col-4 box" id = "col5" data-cell-index="5">CELL 5</div>
+
+        <div class= "col-4 box" id = "col6" data-cell-index= "6">CELL 6</div>
+        <div class= "col-4 box" id = "col7" data-cell-index= "7">CELL 7</div>
+        <div class= "col-4 box" id = "col8" data-cell-index= "8">CELL 8</div>
+      </div>
+      </div>
     </body>
 </html>

@@ -1,11 +1,14 @@
 'use strict'
 const ui = require('./ui')
 const api = require('./api')
+const store = require('./store')
+const events = require('./events')
 // to know where or not the game is 'on/off' or over
 let gameOn = true
 
-// to identify the player that is currently going
+let player = 'X'
 
+// to identify the player that is currently going
 // current game board.  this will populate with our clicks/moves
 let gameBoard = ['', '', '', '', '', '', '', '', '']
 
@@ -22,35 +25,27 @@ const checkBoard = [
 ]
 
 // to determine who's turn it is
-const playerTurn = function (player) {
-  if (player === 'X') {
-    player = 'O'
-    return player
-  } else {
-    player = 'X'
-    return player
-  }
-}
 
 // make sure that you do not double cellClick
 // make sure that you capture data from each cell with attr.
 
-const cellClick = function (player, cellIndex, board, gameStatus, eventTarget) {
+const cellClick = function (cellIndex, board, gameStatus, eventTarget) {
   if (board[cellIndex] === '' && gameStatus) {
     board[cellIndex] = player
     $(eventTarget).text(`${player} and ${cellIndex}`)
     console.log(board)
-    checkWin(board)
-    api.updateGame(player, cellIndex, gameStatus)
+    //    checkWin(board)
+    //    api.updateGame(user, cellIndex, gameStatus)
+    player = player === 'X' ? 'O' : 'X'
   } else {
     console.log('click not functional')
     // have to figure out how to stop player function
   }
 }
 
-// convert into array inside of array
+// convert into array of another array
 const indexArray = function (gameboard) {
-  for (let i = 0; i < gameboard.array; i++) {
+  for (let i = 0; i < array.length; i++) {
     let xCells = []
     let oCells = []
     if (gameboard[i] === 'X') {
@@ -59,21 +54,20 @@ const indexArray = function (gameboard) {
     if (gameboard[i] === 'O') {
       oCells.push(i)
     }
-    checkWin(xCells)
-    checkWin(oCells)
+//    checkWin(xCells)
+//    checkWin(oCells)
   }
 }
-const checkWin (gameArray, checkBoard)
+/* const checkWin (gameArray, checkBoard)
   for (let j = 0; j < gameArray)
   }
   // find all X's in board indexes and compare to array of checkBoard.
   // find all O's in board indexes and compare to array of checkBoard
   // if equal gameOn = false
     // player who's array matches wins.
-}
+} */
 
 module.exports = {
-  playerTurn,
   cellClick,
   gameOn,
   gameBoard
