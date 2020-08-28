@@ -45,11 +45,11 @@ const onChangePassword = function (event) {
 const onSignOut = function (event) {
   event.preventDefault()
   // get the form from the event
-  const form = event.target
+  //  const form = event.target
   // use getFormFields to get data from the form
-  const data = getFormFields(form)
+  //  const data = getFormFields(form)
   // send data in AJAX request to the API
-  api.signOut(data)
+  api.signOut()
     // handle successul response
     .then(ui.onSignOutSuccess)
     // handle failed response

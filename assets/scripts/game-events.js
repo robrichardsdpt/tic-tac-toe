@@ -20,8 +20,8 @@ const checkWin = [
 // make sure that you capture data from each cell with attr.
 const handleCellClick = function (event) {
   const cellClick = event.target
-  const cellClickIndex = parseInt($('cellClick').attr('data-cell-index'))
-
+  const cellClickIndex = $('CellClick').attr('data-cell-index')
+  const cellIndex = parseInt(cellClickIndex)
 }
 
 // to change player after turn

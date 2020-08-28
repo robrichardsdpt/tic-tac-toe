@@ -1,15 +1,15 @@
-curl "https://tic-tac-toe-api-production.herokuapp.com/games/:id" \
+curl "https://tic-tac-toe-api-production.herokuapp.com/games/${ID}" \
   --include \
   --request PATCH \
-  --header "Authorization: Bearer ${ID}" \
+  --header "Authorization: Bearer ${TOKEN}" \
   --header "Content-Type: application/json" \
   --data '{
     "game": {
       "cell":{
         "index": "'"${INDEX}"'",
         "value": "'"${VALUE}"'"
-      }
-      "over": false
+      },
+      "over": "'"${FINISHED}"'"
     }
   }'
 
