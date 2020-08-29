@@ -17,7 +17,7 @@ $(() => {
   $('#change-password-form').on('submit', authEvents.onChangePassword)
   $('#sign-out').on('submit', authEvents.onSignOut) // do I refresh the site?
   $('#new-game').on('submit', authEvents.onNewGame)
-  $('.box').one('click', authEvents.onCellClick)
+  $('.box').on('click', authEvents.onCellClick)
 
 /*
   $('#col0').on('click', gameEvents.onGameClick0)

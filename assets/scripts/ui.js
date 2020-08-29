@@ -58,9 +58,15 @@ const onNewGameSuccess = function (response) {
   $('#sign-out').show()
   $('#new-game').hide()
   $('.tic-tac-toe-board').show()
-//  $('#sign-up-form').hide()
-//  $('#sign-in-form').hide()
+  gameEvents.over = false
+//  gameEvents.gameBoard = ['', '', '', '', '', '', '', '', '']
+//  const box = ['col00', 'col01', 'col02', 'col03', 'col04', 'col05', 'col06', 'col07', 'col08']
+//  $.each(box, function (i, val) {
+//    $('#' + val).text('')
+//  })
+//  gameEvents.player = 'X'
 }
+
 const onNewGameFailure = function () {
   $('#message').text('New game not started. Please try again')
 }

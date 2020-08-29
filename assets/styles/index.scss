@@ -8,15 +8,15 @@
 .container {
   // set the board container to take up 100% of the viewport height
   // in this case that is the height of the browser
-  height: 100vh;
+  height: 75vh;
   // vh = viewport height
 }
 
 .board {
   // set the max height and the mid width of the board
   // use a method called 'calc' to subtract some space around each side
-  max-height: calc(100vh - 200px);
-  min-width: calc(100vh - 600px);
+  max-height: calc(75vh - 100px);
+  min-width: calc(75vh - 100px);
 
 }
 
@@ -73,4 +73,5 @@
     background-color: lightsteelblue;
     cursor: pointer;
   }
+
 }

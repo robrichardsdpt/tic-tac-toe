@@ -41,6 +41,7 @@ const cellClick = function (user, cellIndex, board, gameStatus, eventTarget) {
     player = player === 'X' ? 'O' : 'X'
     didSomeoneWin(board, gameStatus)
     console.log(board[cellIndex])
+    console.log(gameOn, over)
   } else {
     console.log('click not functional')
     // have to figure out how to stop player function
@@ -66,17 +67,23 @@ function didSomeoneWin (gameboard, status) {
   }
   // this is working, but is not stopping the game.
   if (playerWon) {
-    status = false
-    console.log(status)
+    over = true
+    gameOn = false
+    console.log(status, over)
     $('#message').append('You Win!')
     return status
   }
 }
 
 const signOut = function () {
-  for (let i = 0; i < gameBoard.length; i++) {
-    gameBoard = gameBoard.pop()
-  }
+  // gameBoard = ['', '', '', '', '', '', '', '', '']
+  // gameOn = false
+  // player = 'X'
+  // const box = ['col0', 'col1', 'col2', 'col3', 'col4', 'col5', 'col6', 'col7', 'col8']
+  // $.each(box, function (i, val) {
+  //   $('#' + val).text('')
+  // })
+  // one click did not work
   $('.tic-tac-toe-board').hide()
 }
 
