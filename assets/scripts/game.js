@@ -24,9 +24,6 @@ const checkBoard = [
 ]
 
 // one way to tie, if you made 9 moves
-const playerSwitch = function (user) {
-  user = user === 'X' ? 'O' : 'X'
-}
 // quit option
 // to determine who's turn it is
 
@@ -40,6 +37,7 @@ const cellClick = function (user, cellIndex, board, gameStatus, eventTarget) {
     console.log(board)
     //    checkWin(board)
     // api.updateGame(player, cellIndex, gameStatus)
+    $('#message').text(`${board[cellIndex]}, nice move!`)
     player = player === 'X' ? 'O' : 'X'
     didSomeoneWin(board, gameStatus)
     console.log(board[cellIndex])
@@ -65,9 +63,11 @@ function didSomeoneWin (gameboard, status) {
       break
     }
   }
+  // this is working, but is not stopping the game.
   if (playerWon) {
     status = false
     console.log(status)
+    $('#message').text('You Win!')
     return status
   }
 }

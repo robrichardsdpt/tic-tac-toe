@@ -66,7 +66,6 @@ const onNewGameFailure = function () {
 }
 
 const onUpdateGameSuccess = function (response) {
-  $('#message').text(`${gameEvents.player}, nice move!`)
   store.gameStatus = response.game.cells
   console.log(store.gameStatus)
 }
