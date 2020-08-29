@@ -41,7 +41,7 @@ const cellClick = function (user, cellIndex, board, gameStatus, eventTarget) {
     //    checkWin(board)
     // api.updateGame(player, cellIndex, gameStatus)
     player = player === 'X' ? 'O' : 'X'
-    didSomeoneWin(board)
+    didSomeoneWin(board, gameStatus)
     console.log(board[cellIndex])
   } else {
     console.log('click not functional')
@@ -49,7 +49,7 @@ const cellClick = function (user, cellIndex, board, gameStatus, eventTarget) {
   }
 }
 
-function didSomeoneWin (gameboard, check) {
+function didSomeoneWin (gameboard, status) {
   let playerWon = false
   for (let i = 0; i < checkBoard.length; i++) {
     const win = checkBoard[i]
@@ -59,14 +59,16 @@ function didSomeoneWin (gameboard, check) {
     if (col1 === '' || col2 === '' || col3 === '') {
       continue
     }
-    console.log(col1)
+    console.log(col1, col2, col3)
     if (col1 === col2 && col2 === col3) {
       playerWon = true
       break
     }
   }
   if (playerWon) {
-    gameOn = false
+    status = false
+    console.log(status)
+    return status
   }
 }
 
