@@ -7,7 +7,6 @@ const events = require('./events')
 let gameOn = true
 let over = false
 let player = 'X'
-
 // to identify the player that is currently going
 // current game board.  this will populate with our clicks/moves
 let gameBoard = ['', '', '', '', '', '', '', '', '']
@@ -25,9 +24,10 @@ const checkBoard = [
 ]
 
 // one way to tie, if you made 9 moves
-
+const playerSwitch = function (user) {
+  user = user === 'X' ? 'O' : 'X'
+}
 // quit option
-
 // to determine who's turn it is
 
 // make sure that you do not double cellClick
@@ -41,15 +41,15 @@ const cellClick = function (user, cellIndex, board, gameStatus, eventTarget) {
     //    checkWin(board)
     // api.updateGame(player, cellIndex, gameStatus)
     player = player === 'X' ? 'O' : 'X'
-    didSomeoneWin()
-    return player
+    didSomeoneWin(board)
+    console.log(board[cellIndex])
   } else {
     console.log('click not functional')
     // have to figure out how to stop player function
   }
 }
 
-function didSomeoneWin () {
+function didSomeoneWin (gameboard, check) {
   let playerWon = false
   for (let i = 0; i < checkBoard.length; i++) {
     const win = checkBoard[i]
@@ -59,6 +59,7 @@ function didSomeoneWin () {
     if (col1 === '' || col2 === '' || col3 === '') {
       continue
     }
+    console.log(col1)
     if (col1 === col2 && col2 === col3) {
       playerWon = true
       break

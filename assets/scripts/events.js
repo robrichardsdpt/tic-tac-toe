@@ -82,11 +82,11 @@ const onCellClick = function (event) {
   // gameEvents.playerTurn(gameEvents.player)
   console.log(gameEvents.player)
   gameEvents.cellClick(gameEvents.player, dataCellIndexInt, gameEvents.gameBoard, gameEvents.gameOn, event.target)
-  api.updateGame(dataCellIndexInt, gameEvents.player, gameEvents.over)
+  console.log(gameEvents.gameBoard[dataCellIndexInt])
+  api.updateGame(dataCellIndexInt, gameEvents.gameBoard[dataCellIndexInt], gameEvents.over)
     .then(ui.onUpdateGameSuccess)
     .catch(ui.onUpdateGameFailure)
 }
-
 module.exports = {
   onSignUp,
   onSignIn,
