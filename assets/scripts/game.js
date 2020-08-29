@@ -60,6 +60,7 @@ function didSomeoneWin (gameboard, status) {
     console.log(col1, col2, col3)
     if (col1 === col2 && col2 === col3) {
       playerWon = true
+      $('#message').text(`Great job player ${col1}...`)
       break
     }
   }
@@ -67,41 +68,23 @@ function didSomeoneWin (gameboard, status) {
   if (playerWon) {
     status = false
     console.log(status)
-    $('#message').text('You Win!')
+    $('#message').append('You Win!')
     return status
   }
 }
 
-// let xCells = []
-// let oCells = []
-// convert into array of another array
-// const indexArray = function (arr) {
-//  for (let i = 0; i < arr.length; i++) {
-//
-//    if (arr[i] === 'X') {
-//      xCells.push(i)
-//    }
-//    if (arr[i] === 'O') {
-//      oCells.push(i)
-//    }
-//    checkWin(xCells)
-//    checkWin(oCells)
-//  }
-//  console.log(xCells)
-// }
-/* const checkWin (gameArray, checkBoard)
-  for (let j = 0; j < gameArray)
+const signOut = function () {
+  for (let i = 0; i < gameBoard.length; i++) {
+    gameBoard = gameBoard.pop()
   }
-  // find all X's in board indexes and compare to array of checkBoard.
-  // find all O's in board indexes and compare to array of checkBoard
-  // if equal gameOn = false
-    // player who's array matches wins.
-} */
+  $('.tic-tac-toe-board').hide()
+}
 
 module.exports = {
   cellClick,
   gameOn,
   gameBoard,
   over,
-  player
+  player,
+  signOut
 }
