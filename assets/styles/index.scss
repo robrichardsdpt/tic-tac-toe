@@ -2,17 +2,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Permanent+Marker&display=swap');
 
 .nav{
-  background: #B22222;
-  color: white;
+  background: #050533;
+  color: #E34234;
   display: flex;
+  align-self: flex-end;
 }
+
 .container {
   // set the board container to take up 100% of the viewport height
   // in this case that is the height of the browser
   height: 75vh;
   // vh = viewport height
 }
-
+.main-nav {
+  display: flex;
+  background: #050533;
+  align-self: flex-end;
+  justify-content: flex-end;
+}
 .board {
   // set the max height and the mid width of the board
   // use a method called 'calc' to subtract some space around each side
@@ -22,16 +29,16 @@
 }
 
 .btn-secondary {
-  background-color: #B22222;
+  background-color: #050533;
   align-items: flex-end;
 }
 
 .box {
   font-family: 'Permanent Marker', cursive;
   font-size: 12vh;
-  color: #B22222;
+  color: #E34234;
 
-  background: white;
+  background: #F2F1E8;
   // set the min height for each box to be a third of the parent's (.board) width
   // the calc method will take 100% of the parent's height and divide it by 3
   min-height: calc(100% / 3);
@@ -76,7 +83,7 @@
     border-bottom: 0px;
   }
   &:hover {
-    background-color: lightsteelblue;
+    background-color: #0D698B;
     cursor: pointer;
   }
 
