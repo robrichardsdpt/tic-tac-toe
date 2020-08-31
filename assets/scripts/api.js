@@ -72,7 +72,7 @@ const updateGame = function (cell, player, over) {
           index: `${cell}`,
           value: `${player}`
         },
-        over: false
+        over: over
       }
     }
   })

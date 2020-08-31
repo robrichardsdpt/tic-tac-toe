@@ -6,10 +6,11 @@ const events = require('./events')
 // to know where or not the game is 'on/off' or over
 let gameOn = true
 let over = false
-let player = 'X'
+let player = ''
 // to identify the player that is currently going
 // current game board.  this will populate with our clicks/moves
-let gameBoard = ['', '', '', '', '', '', '', '', '']
+// let gameBoard = ['', '', '', '', '', '', '', '', '']
+// let gameBoard = store.cells
 
 // scenarios that determine winner
 const checkBoard = [
@@ -31,7 +32,11 @@ const checkBoard = [
 // make sure that you capture data from each cell with attr.
 
 const cellClick = function (user, cellIndex, board, gameStatus, eventTarget) {
-  if (board[cellIndex] === '' && gameStatus) {
+  if (player === '') {
+    player = 'X'
+  }
+  console.log(over)
+  if (board[cellIndex] === '' && gameOn) {
     board[cellIndex] = player
     $(eventTarget).text(`${player}`)
     console.log(board)
@@ -44,7 +49,6 @@ const cellClick = function (user, cellIndex, board, gameStatus, eventTarget) {
     console.log(gameOn, over)
   } else {
     console.log('click not functional')
-    // have to figure out how to stop player function
   }
 }
 
@@ -52,46 +56,61 @@ function didSomeoneWin (gameboard, status) {
   let playerWon = false
   for (let i = 0; i < checkBoard.length; i++) {
     const win = checkBoard[i]
-    const col1 = gameBoard[win[0]]
-    const col2 = gameBoard[win[1]]
-    const col3 = gameBoard[win[2]]
+    const col1 = store.gameBoard[win[0]]
+    const col2 = store.gameBoard[win[1]]
+    const col3 = store.gameBoard[win[2]]
     if (col1 === '' || col2 === '' || col3 === '') {
       continue
     }
     console.log(col1, col2, col3)
     if (col1 === col2 && col2 === col3) {
       playerWon = true
+      // make end game function which returns over?
       $('#message').text(`Great job player ${col1}...`)
       break
     }
   }
-  // this is working, but is not stopping the game.
+  // make this into end game?  Would that send the over to the rest of the js and then to api?
   if (playerWon) {
     over = true
+    status = false
     gameOn = false
     console.log(status, over)
     $('#message').append('You Win!')
-    return status
+    return over
   }
 }
 
+const newGameChanges = function () {
+  player = 'X'
+  over = false
+  gameOn = true
+  console.log('Hello')
+}
+
+const getGamesPlayed = function () {
+  api.getGames()
+    .then(function (response) {
+      console.log(response)
+      console.log(response.games.length)
+      store.gamesPlayed = response.games.length
+      $('#total-games-message').text(`You have played ${store.gamesPlayed} games to date!`)
+    })
+    .catch(function (err) {
+      console.log(err)
+    })
+}
+
 const signOut = function () {
-  // gameBoard = ['', '', '', '', '', '', '', '', '']
-  // gameOn = false
-  // player = 'X'
-  // const box = ['col0', 'col1', 'col2', 'col3', 'col4', 'col5', 'col6', 'col7', 'col8']
-  // $.each(box, function (i, val) {
-  //   $('#' + val).text('')
-  // })
-  // one click did not work
   $('.tic-tac-toe-board').hide()
 }
 
 module.exports = {
   cellClick,
   gameOn,
-  gameBoard,
   over,
   player,
-  signOut
+  signOut,
+  newGameChanges,
+  getGamesPlayed
 }
