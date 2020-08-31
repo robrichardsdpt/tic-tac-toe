@@ -4,6 +4,7 @@
 .nav{
   background: #B22222;
   color: white;
+  display: flex;
 }
 .container {
   // set the board container to take up 100% of the viewport height
@@ -18,6 +19,11 @@
   max-height: calc(75vh - 100px);
   min-width: calc(75vh - 100px);
 
+}
+
+.btn-secondary {
+  background-color: #B22222;
+  align-items: flex-end;
 }
 
 .box {

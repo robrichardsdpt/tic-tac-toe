@@ -14,6 +14,23 @@
     <body>
       <div class ='nav'>
       <h1>xO ticTacToe Ox</h1>
+      <form id="change-password-form">
+        <fieldset>
+        <!--    <legend>Change your password</legend>
+          <input type="password" name="passwords[old]" placeholder="Old Password">
+          <input type="password" name="passwords[new]" placeholder="New Password">
+         <input type="submit" value="Change Password!"> -->
+           <div class="dropdown">
+             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+               Change your password </button>
+             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+               <input type="password" name="passwords[old]" placeholder="Old Password">
+               <input type="password" name="passwords[new]" placeholder="New Password">
+               <input type="submit" value="Change Password!">
+            </div>
+          </div>
+        </fieldset>
+      </form>
     </div>
       <h3 id="message"></h3>
       <p id="total-games-message"> </p>
@@ -42,15 +59,6 @@
           </fieldset>
         </form>
 
-        <form id="change-password-form">
-          <fieldset>
-            <legend>Change your password</legend>
-            <input type="password" name="passwords[old]" placeholder="Old Password">
-            <input type="password" name="passwords[new]" placeholder="New Password">
-            <input type="submit" value="Change Password!">
-          </fieldset>
-        </form>
-
         <form id="new-game">
           <input type= "submit" value="New Game">
         </form>
@@ -62,17 +70,17 @@
 
       <div class= "tic-tac-toe-board container">
       <div class= "row board h-100">
-        <div class= "col-4 box" id = "col00" data-cell-index= "0"></div>
-        <div class= "col-4 box" id = "col01" data-cell-index= "1"></div>
-        <div class= "col-4 box" id = "col02" data-cell-index= "2"></div>
+        <div class= "col-4 box" data-cell-index= "0"></div>
+        <div class= "col-4 box" data-cell-index= "1"></div>
+        <div class= "col-4 box" data-cell-index= "2"></div>
 
-        <div class= "col-4 box" id = "col03" data-cell-index="3"></div>
-        <div class= "col-4 box" id = "col04" data-cell-index="4"></div>
-        <div class= "col-4 box" id = "col05" data-cell-index="5"></div>
+        <div class= "col-4 box" data-cell-index="3"></div>
+        <div class= "col-4 box" data-cell-index="4"></div>
+        <div class= "col-4 box" data-cell-index="5"></div>
 
-        <div class= "col-4 box" id = "col06" data-cell-index= "6"></div>
-        <div class= "col-4 box" id = "col07" data-cell-index= "7"></div>
-        <div class= "col-4 box" id = "col08" data-cell-index= "8"></div>
+        <div class= "col-4 box" data-cell-index= "6"></div>
+        <div class= "col-4 box" data-cell-index= "7"></div>
+        <div class= "col-4 box" data-cell-index= "8"></div>
       </div>
       </div>
       <footer>Copyright Rob Richards, 2020.</footer>

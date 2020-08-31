@@ -23,13 +23,7 @@ const checkBoard = [
   [3, 4, 5],
   [6, 7, 8]
 ]
-
-// one way to tie, if you made 9 moves
-// quit option
-// to determine who's turn it is
-
-// make sure that you do not double cellClick
-// make sure that you capture data from each cell with attr.
+//  quit option
 
 const cellClick = function (user, cellIndex, board, gameStatus, eventTarget) {
   if (player === '') {
@@ -47,6 +41,18 @@ const cellClick = function (user, cellIndex, board, gameStatus, eventTarget) {
     didSomeoneWin(board, gameStatus)
     console.log(board[cellIndex])
     console.log(gameOn, over)
+    const data = {
+      game: {
+        cell: {
+          index: cellIndex,
+          value: board[cellIndex]
+        },
+        over: over
+      }
+    }
+    api.updateGame(data)
+      .then(ui.onUpdateGameSuccess)
+      .catch(ui.onUpdateGameFailure)
   } else {
     console.log('click not functional')
   }
@@ -65,6 +71,7 @@ function didSomeoneWin (gameboard, status) {
     console.log(col1, col2, col3)
     if (col1 === col2 && col2 === col3) {
       playerWon = true
+      over = true
       // make end game function which returns over?
       $('#message').text(`Great job player ${col1}...`)
       break
@@ -79,13 +86,20 @@ function didSomeoneWin (gameboard, status) {
     $('#message').append('You Win!')
     return over
   }
+  if (!gameboard.includes('')) {
+    over = true
+    status = false
+    gameOn = false
+    console.log(status, over)
+    $('#message').append('  It\'s a tie!!')
+    return over
+  }
 }
 
 const newGameChanges = function () {
   player = 'X'
   over = false
   gameOn = true
-  console.log('Hello')
 }
 
 const getGamesPlayed = function () {
