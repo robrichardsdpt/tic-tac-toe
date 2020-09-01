@@ -93,6 +93,7 @@ const getGamesPlayed = function () {
   api.getGames()
     .then(function (response) {
       store.gamesPlayed = response.games.length
+      console.log(response.games)
       $('#total-games-message').text(`You have played ${store.gamesPlayed} games to date!`)
     })
     .catch(function () {

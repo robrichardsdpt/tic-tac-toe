@@ -49,10 +49,8 @@ const onSignOut = function (event) {
 // Handles new game click and sends information to API for getting games to update game log and to start new game
 const onNewGame = function (event) {
   event.preventDefault()
-  const form = event.target
-  const data = getFormFields(form)
-  api.getGames(data)
-  api.newGame(data)
+  api.getGames()
+  api.newGame()
     .then(ui.onNewGameSuccess)
     .catch(ui.onNewGameFailure)
 }

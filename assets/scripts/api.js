@@ -44,7 +44,7 @@ const signOut = function (data) {
 }
 
 // Calls API for new game
-const newGame = function (data) {
+const newGame = function () {
   return $.ajax({
     url: config.apiUrl + '/games',
     method: 'POST',

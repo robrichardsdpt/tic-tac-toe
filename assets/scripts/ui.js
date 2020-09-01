@@ -60,9 +60,7 @@ const onNewGameSuccess = function (response) {
   $('#change-password-form').show()
   $('#sign-out').show()
   $('.tic-tac-toe-board').show()
-  gameEvents.over = false
   $('.box').text('')
-  gameEvents.player = 'X'
   gameEvents.newGameChanges()
 }
 const onNewGameFailure = function () {
