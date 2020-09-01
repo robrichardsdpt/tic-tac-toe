@@ -63,7 +63,7 @@ const onCellClick = function (event) {
   // data-cell index gathered from clicked cell and converted from string to integer to pass into cellClick function in game.js file.
   const dataCellIndex = $(event.target).attr('data-cell-index')
   const dataCellIndexInt = parseInt(dataCellIndex)
-  gameEvents.cellClick(gameEvents.player, dataCellIndexInt, store.gameBoard, gameEvents.gameOn, event.target)
+  gameEvents.cellClick(gameEvents.player, dataCellIndexInt, store.gameBoard, event.target)
 }
 
 module.exports = {

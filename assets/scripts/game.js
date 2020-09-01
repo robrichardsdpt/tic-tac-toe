@@ -22,7 +22,7 @@ const checkBoard = [
 
 // takes the arguments to process the game click and add it to DOM and gameBoard
 // sends information to determine if the game has ended and the results
-const cellClick = function (user, cellIndex, board, gameStatus, eventTarget) {
+const cellClick = function (user, cellIndex, board, eventTarget) {
   if (player === '') {
     player = 'X'
   }
@@ -33,7 +33,7 @@ const cellClick = function (user, cellIndex, board, gameStatus, eventTarget) {
     $(eventTarget).text(`${player}`)
     $('#message').text(`${board[cellIndex]}, nice move!`)
     player = player === 'X' ? 'O' : 'X'
-    didSomeoneWin(board, gameStatus)
+    didSomeoneWin(board)
     // data object to send to API on each update
     const data = {
       game: {
