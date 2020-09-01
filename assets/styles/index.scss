@@ -19,6 +19,10 @@
   justify-content: flex-end;
 }
 
+.new-game-bar {
+  padding: 5px;
+}
+
 .board {
   max-height: calc(75vh - 100px);
   min-width: calc(75vh - 100px);
