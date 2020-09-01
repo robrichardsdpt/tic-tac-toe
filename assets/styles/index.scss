@@ -1,84 +1,52 @@
 @import '~bootstrap/scss/bootstrap';
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Permanent+Marker&display=swap');
 
-.nav{
+.nav {
+  align-self: flex-end;
   background: #050533;
   color: #E34234;
   display: flex;
-  align-self: flex-end;
 }
 
 .container {
-  // set the board container to take up 100% of the viewport height
-  // in this case that is the height of the browser
   height: 75vh;
-  // vh = viewport height
 }
+
 .main-nav {
-  display: flex;
-  background: #050533;
   align-self: flex-end;
+  background: #050533;
+  display: flex;
   justify-content: flex-end;
 }
+
 .board {
-  // set the max height and the mid width of the board
-  // use a method called 'calc' to subtract some space around each side
   max-height: calc(75vh - 100px);
   min-width: calc(75vh - 100px);
-
 }
 
 .btn-secondary {
-  background-color: #050533;
   align-items: flex-end;
+  background-color: #050533;
 }
 
 .box {
+  align-items: center;
+  background: #F2F1E8;
+  border-bottom: 3px solid black;
+  border-right: 3px solid black;
+  color: #E34234;
+  display: flex;
   font-family: 'Permanent Marker', cursive;
   font-size: 12vh;
-  color: #E34234;
-
-  background: #F2F1E8;
-  // set the min height for each box to be a third of the parent's (.board) width
-  // the calc method will take 100% of the parent's height and divide it by 3
-  min-height: calc(100% / 3);
-
-  // set each box to have 'display' be 'flex' so we can center the content (x and o) inside the box
-
-  display: flex;
-
-  // center the content along the main axis (L -> R)
-
   justify-content: center;
-
-  // center the content along the cross-axis (top to bottom)
-
-  align-items: center;
-
-  // use 'vh' to have the font size change as the viewport height changes
-
-  // add a shadow to x's and o's
-  // place the shadow 2px to the right and 2px below the text-table
-  // shadow color to be black & be 25% opacity
-
+  min-height: calc(100% / 3);
   text-shadow: 5px 5px rgba(0, 0, 0, .25);
-
-  // prevent the user from selecting the text
-
   user-select: none;
 
-  // we want to have borders on the right of each box and the bottom of each box
-  border-right: 3px solid black;
-  border-bottom: 3px solid black;
-
-  // select the 3 right boxes using ': nth-child' - this will select elements based on their position to their siblings
-  // pass :nth-child() the value '3n' which will select every 3rd box
-  // without sass .box:nth-child(3n)
   &:nth-child(3n) {
     border-right: 0px;
   }
 
-  // select the three bottom boxes using :nth-last-child which selects elements based on position  **counting from the end**
   &:nth-last-child(-1n + 3) {
     border-bottom: 0px;
   }
@@ -86,5 +54,4 @@
     background-color: #0D698B;
     cursor: pointer;
   }
-
 }

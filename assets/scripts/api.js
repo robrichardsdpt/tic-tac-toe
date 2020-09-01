@@ -2,6 +2,7 @@
 const config = require('./config')
 const store = require('./store')
 
+// Calls API to sign user up
 const signUp = function (data) {
   return $.ajax({
     url: config.apiUrl + '/sign-up',
@@ -10,6 +11,7 @@ const signUp = function (data) {
   })
 }
 
+// Calls API to sign in as user
 const signIn = function (data) {
   return $.ajax({
     url: config.apiUrl + '/sign-in',
@@ -18,6 +20,7 @@ const signIn = function (data) {
   })
 }
 
+// Calls API for change password requests
 const changePassword = function (data) {
   return $.ajax({
     url: config.apiUrl + '/change-password',
@@ -29,6 +32,7 @@ const changePassword = function (data) {
   })
 }
 
+// Calls API for sign out function
 const signOut = function (data) {
   return $.ajax({
     url: config.apiUrl + '/sign-out',
@@ -39,6 +43,7 @@ const signOut = function (data) {
   })
 }
 
+// Calls API for new game
 const newGame = function (data) {
   return $.ajax({
     url: config.apiUrl + '/games',
@@ -49,6 +54,7 @@ const newGame = function (data) {
   })
 }
 
+// Calls API to get all game data
 const getGames = function (data) {
   return $.ajax({
     url: config.apiUrl + '/games',
@@ -59,6 +65,7 @@ const getGames = function (data) {
   })
 }
 
+// Calls API to update game based on cell click
 const updateGame = function (data) {
   return $.ajax({
     url: config.apiUrl + '/games/' + store.game,
@@ -70,6 +77,7 @@ const updateGame = function (data) {
   })
 }
 
+// Calls API to delete game
 const destroyGame = function (data) {
   return $.ajax({
     url: config.apiUrl + '/games/' + store.game,

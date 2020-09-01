@@ -5,91 +5,67 @@ const ui = require('./ui')
 const gameEvents = require('./game')
 const store = require('./store')
 
+// Handles sign on click and sends information to API
 const onSignUp = function (event) {
   event.preventDefault()
-  // get the form from the event
   const form = event.target
-  // use getFormFields to get data from the form
   const data = getFormFields(form)
-  // send data in AJAX request to the API
   api.signUp(data)
-    // handle successul response
     .then(ui.onSignUpSuccess)
-    // handle failed response
     .catch(ui.onSignUpFailure)
 }
+
+// Handles sign in click and sends information to API
 const onSignIn = function (event) {
   event.preventDefault()
-  // get the form from the event
   const form = event.target
-  // use getFormFields to get data from the form
   const data = getFormFields(form)
-  // send data in AJAX request to the API
   api.signIn(data)
-    // handle successul response
     .then(ui.onSignInSuccess)
-    // handle failed response
     .catch(ui.onSignInFailure)
 }
+
+// Handles change password click and sends information to API
 const onChangePassword = function (event) {
   event.preventDefault()
-  // get the form from the event
   const form = event.target
-  // use getFormFields to get data from the form
   const data = getFormFields(form)
-  // send data in AJAX request to the API
   api.changePassword(data)
-    // handle successul response
     .then(ui.onChangePasswordSuccess)
-    // handle failed response
     .catch(ui.onChangePasswordFailure)
 }
 
+// Handles sign out click by user and sends to API and to game.js file
 const onSignOut = function (event) {
   event.preventDefault()
-  // get the form from the event
   const form = event.target
-  // use getFormFields to get data from the form
   const data = getFormFields(form)
-  // send data in AJAX request to the API
   gameEvents.signOut()
   api.signOut(data)
-    // handle successul response
     .then(ui.onSignOutSuccess)
-    // handle failed response
     .catch(ui.onSignOutFailure)
 }
 
+// Handles new game click and sends information to API for getting games to update game log and to start new game
 const onNewGame = function (event) {
   event.preventDefault()
   const form = event.target
-  // use getFormFields to get data from the form
   const data = getFormFields(form)
-  // gameEvents.player = 'X'
-  // gameEvents.gameBoard = ['', '', '', '', '', '', '', '', '']
-  // send data in AJAX request to the API
   api.getGames(data)
   api.newGame(data)
-    // handle successul response
     .then(ui.onNewGameSuccess)
-    // handle failed response
     .catch(ui.onNewGameFailure)
 }
 
+// Handles cell click to update the game. Information sent to game.js to process and send to API.
 const onCellClick = function (event) {
   event.preventDefault()
+  // data-cell index gathered from clicked cell and converted from string to integer to pass into cellClick function in game.js file.
   const dataCellIndex = $(event.target).attr('data-cell-index')
   const dataCellIndexInt = parseInt(dataCellIndex)
-  console.log(dataCellIndexInt)
-  // gameEvents.playerTurn(gameEvents.player)
-  console.log(gameEvents.player)
   gameEvents.cellClick(gameEvents.player, dataCellIndexInt, store.gameBoard, gameEvents.gameOn, event.target)
-  console.log(store.gameBoard[dataCellIndexInt])
-//  api.updateGame(/*dataCellIndexInt, store.gameBoard[dataCellIndexInt], gameEvents.over*/data)
-//    .then(ui.onUpdateGameSuccess)
-//    .catch(ui.onUpdateGameFailure)
-//  console.log(store.cells)
 }
+
 module.exports = {
   onSignUp,
   onSignIn,

@@ -1,20 +1,22 @@
 'use strict'
 const store = require('./store')
 const gameEvents = require('./game')
-const api = require('./api')
 
+// Handles response of API to sign up
 const onSignUpSuccess = function (response) {
-  $('#message').text(`Thanks for signing up ${response.user.email}!  Please sign in to start playing!`)
+  $('#message').text(`Thanks for signing up ${response.user.email}!`)
+  $('#total-games-message').text('Please sign in to start playing!')
   $('#sign-up-form').trigger('reset')
 }
 const onSignUpFailure = function () {
   $('#message').text('Sign up failed try again')
 }
 
+// Handles API response to sign in
 const onSignInSuccess = function (response) {
   store.user = response.user
   $('#message').text('Thanks for signing in ' + response.user.email)
-  // + games.length()
+  $('#total-games-message').text('Click new game to begin!')
   $('#sign-in-form').trigger('reset')
   $('#change-password-form').show()
   $('#sign-out').show()
@@ -26,6 +28,7 @@ const onSignInFailure = function () {
   $('#message').text('Sign in failed.  Please try again')
 }
 
+// Handles API response to password change requests
 const onChangePasswordSuccess = function () {
   $('#message').text('Changed password successfully')
   $('#change-password-form').trigger('reset')
@@ -35,6 +38,7 @@ const onChangePasswordFailure = function () {
   $('#change-password-form').trigger('reset')
 }
 
+// Handles API response to sign out request
 const onSignOutSuccess = function (response) {
   $('#message').text('Signed out successfully')
   $('#change-password-form').trigger('reset')
@@ -42,20 +46,17 @@ const onSignOutSuccess = function (response) {
   $('#sign-in-form').show()
   $('#sign-out').hide()
   $('#change-password-form').hide()
-  console.log(response)
 }
-const onSignOutFailure = function (error) {
+const onSignOutFailure = function () {
   $('#message').text('You have failed to sign out.  Please try again.')
   $('#change-password-form').trigger('reset')
-  console.log(error)
 }
 
+// Handles API response to new game request
 const onNewGameSuccess = function (response) {
   store.game = response.game._id
   store.gameBoard = response.game.cells
   gameEvents.getGamesPlayed()
-  console.log(store.gameBoard)
-  console.log(response)
   $('#message').text('Let\'s Go!')
   $('#change-password-form').show()
   $('#sign-out').show()
@@ -65,18 +66,16 @@ const onNewGameSuccess = function (response) {
   gameEvents.player = 'X'
   gameEvents.newGameChanges()
 }
-
 const onNewGameFailure = function () {
   $('#message').text('New game not started. Please try again')
 }
 
+// Handles API response to game updates
 const onUpdateGameSuccess = function (response) {
   store.gameStatus = response.game.cells
-  console.log(store.gameStatus)
 }
-
 const onUpdateGameFailure = function () {
-
+  $('#message').text('Game failed to update. Please try again')
 }
 
 module.exports = {

@@ -2,17 +2,13 @@
 const ui = require('./ui')
 const api = require('./api')
 const store = require('./store')
-const events = require('./events')
-// to know where or not the game is 'on/off' or over
+
+// initial values to start game and use in functions
 let gameOn = true
 let over = false
 let player = ''
-// to identify the player that is currently going
-// current game board.  this will populate with our clicks/moves
-// let gameBoard = ['', '', '', '', '', '', '', '', '']
-// let gameBoard = store.cells
 
-// scenarios that determine winner
+// used to check the indexes of the gameBoard whether the game has been won
 const checkBoard = [
   [0, 1, 2],
   [0, 3, 6],
@@ -23,24 +19,22 @@ const checkBoard = [
   [3, 4, 5],
   [6, 7, 8]
 ]
-//  quit option
 
+// takes the arguments to process the game click and add it to DOM and gameBoard
+// sends information to determine if the game has ended and the results
 const cellClick = function (user, cellIndex, board, gameStatus, eventTarget) {
   if (player === '') {
     player = 'X'
   }
-  console.log(over)
+  // checks if the cell clicked is empty and if the game is still going
+  // If this are both true, updates cell to player value, updates the game, and the next player to go.
   if (board[cellIndex] === '' && gameOn) {
     board[cellIndex] = player
     $(eventTarget).text(`${player}`)
-    console.log(board)
-    //    checkWin(board)
-    // api.updateGame(player, cellIndex, gameStatus)
     $('#message').text(`${board[cellIndex]}, nice move!`)
     player = player === 'X' ? 'O' : 'X'
     didSomeoneWin(board, gameStatus)
-    console.log(board[cellIndex])
-    console.log(gameOn, over)
+    // data object to send to API on each update
     const data = {
       game: {
         cell: {
@@ -54,10 +48,12 @@ const cellClick = function (user, cellIndex, board, gameStatus, eventTarget) {
       .then(ui.onUpdateGameSuccess)
       .catch(ui.onUpdateGameFailure)
   } else {
-    console.log('click not functional')
+    $('#message').text('Not a valid move!  Try again.')
   }
 }
 
+// Checks gameBoard against the checkBoard.  Sees if the indices in the array have equal values on the gameboard
+// Determines if a win or tie has occured on the current move.
 function didSomeoneWin (gameboard, status) {
   let playerWon = false
   for (let i = 0; i < checkBoard.length; i++) {
@@ -68,21 +64,17 @@ function didSomeoneWin (gameboard, status) {
     if (col1 === '' || col2 === '' || col3 === '') {
       continue
     }
-    console.log(col1, col2, col3)
     if (col1 === col2 && col2 === col3) {
       playerWon = true
       over = true
-      // make end game function which returns over?
       $('#message').text(`Great job player ${col1}...`)
       break
     }
   }
-  // make this into end game?  Would that send the over to the rest of the js and then to api?
   if (playerWon) {
     over = true
     status = false
     gameOn = false
-    console.log(status, over)
     $('#message').append('You Win!')
     return over
   }
@@ -90,33 +82,34 @@ function didSomeoneWin (gameboard, status) {
     over = true
     status = false
     gameOn = false
-    console.log(status, over)
     $('#message').append('  It\'s a tie!!')
     return over
   }
 }
 
+// resets the game with a newGame click
 const newGameChanges = function () {
   player = 'X'
   over = false
   gameOn = true
 }
 
+// Displays the number of games played by the user when a newGame click occurs
 const getGamesPlayed = function () {
   api.getGames()
     .then(function (response) {
-      console.log(response)
-      console.log(response.games.length)
       store.gamesPlayed = response.games.length
       $('#total-games-message').text(`You have played ${store.gamesPlayed} games to date!`)
     })
-    .catch(function (err) {
-      console.log(err)
+    .catch(function () {
+      $('#total-games-message').text('Error in getting total games played')
     })
 }
 
+// Changes DOM in response to sign out click
 const signOut = function () {
   $('.tic-tac-toe-board').hide()
+  $('#total-games-message').text('Please sign in below to play again!')
 }
 
 module.exports = {
