@@ -54,7 +54,7 @@ const cellClick = function (user, cellIndex, board, gameStatus, eventTarget) {
 
 // Checks gameBoard against the checkBoard.  Sees if the indices in the array have equal values on the gameboard
 // Determines if a win or tie has occured on the current move.
-function didSomeoneWin (gameboard, status) {
+function didSomeoneWin (gameboard) {
   let playerWon = false
   for (let i = 0; i < checkBoard.length; i++) {
     const win = checkBoard[i]
@@ -66,24 +66,18 @@ function didSomeoneWin (gameboard, status) {
     }
     if (col1 === col2 && col2 === col3) {
       playerWon = true
-      over = true
       $('#message').text(`Great job player ${col1}...`)
       break
     }
   }
   if (playerWon) {
     over = true
-    status = false
     gameOn = false
     $('#message').append('You Win!')
-    return over
-  }
-  if (!gameboard.includes('')) {
+  } else if (!gameboard.includes('')) {
     over = true
-    status = false
     gameOn = false
     $('#message').append('  It\'s a tie!!')
-    return over
   }
 }
 
