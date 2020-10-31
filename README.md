@@ -1,9 +1,7 @@
 [![General Assembly Logo](https://camo.githubusercontent.com/1a91b05b8f4d44b5bbfb83abac2b0996d8e26c92/687474703a2f2f692e696d6775722e636f6d2f6b6538555354712e706e67)](https://generalassemb.ly/education/web-development-immersive)
 
 # xO ticTacToe Ox: A Description
-This Application allows a user to play a game of tic tac toe against themself.  It tracks
-the number of games you play, who wins those games, and allows you to have your own
-secure account.  It communicates with an API which keeps a record of all games that you have played.
+This Application allows a user to play a game of tic tac toe against a computer opponent.  It tracks the number of games you have played, who wins those games, and allows you to have your own secure account.  It communicates with an API which keeps a record of all games that you have played.
 You can recall those games at any time.
 
 ## Planning Story
