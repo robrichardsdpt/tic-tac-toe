@@ -30,6 +30,7 @@ const cellClick = function (user, cellIndex, board, eventTarget) {
   // If this are both true, updates cell to player value, updates the game, and the next player to go.
   if (board[cellIndex] === '' && gameOn) {
     board[cellIndex] = player
+    console.log(eventTarget)
     $(eventTarget).text(`${player}`)
     $('#message').text(`${board[cellIndex]}, nice move!`)
     player = player === 'X' ? 'O' : 'X'
@@ -47,6 +48,12 @@ const cellClick = function (user, cellIndex, board, eventTarget) {
     api.updateGame(data)
       .then(ui.onUpdateGameSuccess)
       .catch(ui.onUpdateGameFailure)
+    console.log(gameOn)
+    if (gameOn) {
+      setTimeout(function () { computerMove(board) }, 1000)
+    }
+  } else if (!gameOn) {
+    $('#message').text('Game Over!')
   } else {
     $('#message').text('Not a valid move!  Try again.')
   }
@@ -74,10 +81,45 @@ function didSomeoneWin (gameboard) {
     over = true
     gameOn = false
     $('#message').append('You Win!')
+    $('.box').removeClass('hover')
   } else if (!gameboard.includes('')) {
     over = true
     gameOn = false
     $('#message').append('  It\'s a tie!!')
+    $('.box').removeClass('hover')
+  }
+}
+
+const computerMove = function (gameboard) {
+  let random = ''
+  // computer marks a random EMPTY cell
+  const freeCells = []
+  for (let i = 0; i < gameboard.length; i++) {
+    if (gameboard[i] === '') {
+      freeCells.push(i)
+    }
+  }
+  random = Math.ceil(Math.random() * freeCells.length) - 1
+  if (gameboard[freeCells[random]] === '' && gameOn) {
+    gameboard[freeCells[random]] = player
+    $(`#${freeCells[random]}`).text(`${player}`)
+    $('#message').text(`${gameboard[freeCells[random]]}, nice move!`)
+    player = player === 'X' ? 'O' : 'X'
+    didSomeoneWin(gameboard)
+    const data = {
+      game: {
+        cell: {
+          index: freeCells[random],
+          value: gameboard[freeCells[random]]
+        },
+        over: over
+      }
+    }
+    api.updateGame(data)
+      .then(ui.onUpdateGameSuccess)
+      .catch(ui.onUpdateGameFailure)
+  } else {
+    computerMove(gameboard)
   }
 }
 
@@ -86,6 +128,7 @@ const newGameChanges = function () {
   player = 'X'
   over = false
   gameOn = true
+  $('.box').addClass('hover')
 }
 
 // Displays the number of games played by the user when a newGame click occurs

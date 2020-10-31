@@ -1,6 +1,9 @@
 @import '~bootstrap/scss/bootstrap';
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Permanent+Marker&display=swap');
 
+body{
+  background-color: lightgray;
+}
 .nav {
   align-self: flex-end;
   background: #050533;
@@ -54,9 +57,11 @@
   &:nth-last-child(-1n + 3) {
     border-bottom: 0px;
   }
+}
 
+.hover {
   &:hover {
-    background-color: #0D698B;
+    background-color: lightsteelblue;
     cursor: pointer;
   }
 }
