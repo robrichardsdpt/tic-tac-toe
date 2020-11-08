@@ -90,6 +90,78 @@ function didSomeoneWin (gameboard) {
   }
 }
 
+const checkForWinningSituation = (game) => {
+  if (gameOn) {
+    console.log(game)
+    console.log(checkBoard)
+    for (let i = 0; i < checkBoard.length; i++) {
+      const win = checkBoard[i]
+      const col1 = game[win[0]]
+      const col2 = game[win[1]]
+      const col3 = game[win[2]]
+      if (col1 !== col3 && col1 === col2 && col3 === '') {
+        game[win[2]] = player
+        $(`#${win[2]}`).text('O')
+        $('#message').text(`${game[win[2]]}, nice move!`)
+        player = player === 'X' ? 'O' : 'X'
+        didSomeoneWin(game)
+        const data = {
+          game: {
+            cell: {
+              index: win[2],
+              value: player
+            },
+            over: over
+          }
+        }
+        api.updateGame(data)
+          .then(ui.onUpdateGameSuccess)
+          .catch(ui.onUpdateGameFailure)
+        return
+      } else if (col1 !== col2 && col1 === col3 && col2 === '') {
+        game[win[1]] = player
+        $(`#${win[1]}`).text('O')
+        $('#message').text(`${game[win[1]]}, nice move!`)
+        player = player === 'X' ? 'O' : 'X'
+        didSomeoneWin(game)
+        const data = {
+          game: {
+            cell: {
+              index: win[1],
+              value: player
+            },
+            over: over
+          }
+        }
+        api.updateGame(data)
+          .then(ui.onUpdateGameSuccess)
+          .catch(ui.onUpdateGameFailure)
+        return
+      } else if (col1 !== col3 && col2 === col3 && col1 === '') {
+        game[win[0]] = player
+        $(`#${win[0]}`).text('O')
+        $('#message').text(`${game[win[0]]}, nice move!`)
+        player = player === 'X' ? 'O' : 'X'
+        didSomeoneWin(game)
+        const data = {
+          game: {
+            cell: {
+              index: win[0],
+              value: player
+            },
+            over: over
+          }
+        }
+        api.updateGame(data)
+          .then(ui.onUpdateGameSuccess)
+          .catch(ui.onUpdateGameFailure)
+        return
+      }
+    }
+  }
+  return false
+}
+
 const computerMove = function (gameboard) {
   let random = ''
   // computer marks a random EMPTY cell
@@ -99,12 +171,16 @@ const computerMove = function (gameboard) {
       freeCells.push(i)
     }
   }
-  random = Math.ceil(Math.random() * freeCells.length) - 1
-  if (gameboard[freeCells[random]] === '' && gameOn) {
-    gameboard[freeCells[random]] = player
-    $(`#${freeCells[random]}`).text(`${player}`)
-    $('#message').text(`${gameboard[freeCells[random]]}, nice move!`)
-    player = player === 'X' ? 'O' : 'X'
+  if (checkForWinningSituation(gameboard) === false) {
+    random = Math.ceil(Math.random() * freeCells.length) - 1
+    if (gameboard[freeCells[random]] === '' && gameOn) {
+      gameboard[freeCells[random]] = player
+      $(`#${freeCells[random]}`).text(`${player}`)
+      $('#message').text(`${gameboard[freeCells[random]]}, nice move!`)
+      player = player === 'X' ? 'O' : 'X'
+    } else {
+      computerMove(gameboard)
+    }
     didSomeoneWin(gameboard)
     const data = {
       game: {
@@ -118,8 +194,6 @@ const computerMove = function (gameboard) {
     api.updateGame(data)
       .then(ui.onUpdateGameSuccess)
       .catch(ui.onUpdateGameFailure)
-  } else {
-    computerMove(gameboard)
   }
 }
 
