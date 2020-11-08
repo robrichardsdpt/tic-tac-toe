@@ -23,6 +23,10 @@ const onSignInSuccess = function (response) {
   $('#new-game').show()
   $('#sign-up-form').hide()
   $('#sign-in-form').hide()
+  $('#sign-up-cont').hide()
+  $('#sign-in-cont').hide()
+  $('#sign-up').hide()
+  $('#sign-in').hide()
 }
 const onSignInFailure = function () {
   $('#message').text('Sign in failed.  Please try again')
@@ -41,12 +45,15 @@ const onChangePasswordFailure = function () {
 // Handles API response to sign out request
 const onSignOutSuccess = function (response) {
   $('#message').text('Signed out successfully')
-  $('#sign-up-form').show()
   $('#sign-in-form').show()
+  $('#sign-in-cont').show()
   $('#sign-out').hide()
   $('#new-game').hide()
   $('#change-password-form').hide()
   $('#sign-up-form').hide()
+  $('#sign-up-cont').hide()
+  $('#sign-in').show()
+  $('#sign-up').show()
 }
 const onSignOutFailure = function () {
   $('#message').text('You have failed to sign out.  Please try again.')

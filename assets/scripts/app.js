@@ -6,6 +6,7 @@ $(() => {
   $('#change-password-form').hide()
   $('#sign-out').hide()
   $('#sign-up-form').hide()
+  $('#sign-up-cont').hide()
   $('#new-game').hide()
   $('.tic-tac-toe-board').hide()
   $('#sign-up-form').on('submit', authEvents.onSignUp)

@@ -68,12 +68,16 @@ const onSignUpBtnClick = function (event) {
   event.preventDefault()
   $('#sign-up-form').show()
   $('#sign-in-form').hide()
+  $('#sign-up-cont').show()
+  $('#sign-in-cont').hide()
 }
 
 const onSignInBtnClick = function (event) {
   event.preventDefault()
   $('#sign-up-form').hide()
   $('#sign-in-form').show()
+  $('#sign-up-cont').hide()
+  $('#sign-in-cont').show()
 }
 
 module.exports = {

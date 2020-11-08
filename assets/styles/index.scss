@@ -6,6 +6,49 @@ body{
   background-color: black;
   color: silver;
 }
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+#sign-up-cont {
+  margin-top: 120px;
+  width: 400px;
+  height: 300px;
+  border: 1px solid #9C9C9C;
+  background-color: black;
+}
+
+#sign-in-cont {
+  margin-top: 120px;
+  width: 400px;
+  height: 300px;
+  border: 1px solid #9C9C9C;
+  background-color: black;
+}
+
+.authTitle {
+  display: flex;
+  justify-content: center;
+  color: tomato;
+  font-size: 2rem;
+  padding-top: 25px;
+  padding-bottom: 15px;
+}
+
+.auth-fields {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+.submitbtn {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 30px;
+}
+
 .nav {
   align-self: flex-end;
   background: black;
@@ -66,4 +109,9 @@ body{
     background-color: lightcyan;
     cursor: pointer;
   }
+}
+
+.dropdown-menu {
+  background: black;
+  color: silver;
 }
