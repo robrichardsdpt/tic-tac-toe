@@ -1,12 +1,14 @@
+$primary: darkcyan;
 @import '~bootstrap/scss/bootstrap';
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Permanent+Marker&display=swap');
 
 body{
-  background-color: lightgray;
+  background-color: black;
+  color: silver;
 }
 .nav {
   align-self: flex-end;
-  background: #050533;
+  background: black;
   color: #E34234;
   display: flex;
 }
@@ -17,7 +19,7 @@ body{
 
 .main-nav {
   align-self: flex-end;
-  background: #050533;
+  background: black;
   display: flex;
   justify-content: flex-end;
 }
@@ -33,14 +35,14 @@ body{
 
 .btn-secondary {
   align-items: flex-end;
-  background-color: #050533;
+  background-color: silver;
 }
 
 .box {
   align-items: center;
-  background: #F2F1E8;
-  border-bottom: 3px solid black;
-  border-right: 3px solid black;
+  background: black;
+  border-bottom: 3px solid darkcyan;
+  border-right: 3px solid darkcyan;
   color: #E34234;
   display: flex;
   font-family: 'Permanent Marker', cursive;
@@ -61,7 +63,7 @@ body{
 
 .hover {
   &:hover {
-    background-color: lightsteelblue;
+    background-color: lightcyan;
     cursor: pointer;
   }
 }

@@ -64,11 +64,25 @@ const onCellClick = function (event) {
   gameEvents.cellClick(gameEvents.player, dataCellIndexInt, store.gameBoard, event.target)
 }
 
+const onSignUpBtnClick = function (event) {
+  event.preventDefault()
+  $('#sign-up-form').show()
+  $('#sign-in-form').hide()
+}
+
+const onSignInBtnClick = function (event) {
+  event.preventDefault()
+  $('#sign-up-form').hide()
+  $('#sign-in-form').show()
+}
+
 module.exports = {
   onSignUp,
   onSignIn,
   onChangePassword,
   onSignOut,
   onNewGame,
-  onCellClick
+  onCellClick,
+  onSignInBtnClick,
+  onSignUpBtnClick
 }

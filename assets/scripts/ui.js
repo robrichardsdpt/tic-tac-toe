@@ -46,6 +46,7 @@ const onSignOutSuccess = function (response) {
   $('#sign-out').hide()
   $('#new-game').hide()
   $('#change-password-form').hide()
+  $('#sign-up-form').hide()
 }
 const onSignOutFailure = function () {
   $('#message').text('You have failed to sign out.  Please try again.')
