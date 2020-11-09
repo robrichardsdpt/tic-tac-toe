@@ -7,11 +7,6 @@ body{
   color: silver;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-}
-
 #sign-up-cont {
   margin-top: 120px;
   width: 400px;
@@ -28,6 +23,11 @@ body{
   border: 1px solid #9C9C9C;
   background-color: black;
   box-shadow: 25px 25px #888888;
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
 }
 
 .authTitle {
