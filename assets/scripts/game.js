@@ -31,7 +31,6 @@ const cellClick = function (user, cellIndex, board, eventTarget) {
   // If this are both true, updates cell to player value, updates the game, and the next player to go.
   if (board[cellIndex] === '' && gameOn && !pausePlayer) {
     board[cellIndex] = player
-    console.log(eventTarget)
     $(eventTarget).text(`${player}`)
     $('#message').text(`${board[cellIndex]}, nice move!`)
     player = player === 'X' ? 'O' : 'X'
@@ -49,7 +48,6 @@ const cellClick = function (user, cellIndex, board, eventTarget) {
     api.updateGame(data)
       .then(ui.onUpdateGameSuccess)
       .catch(ui.onUpdateGameFailure)
-    console.log(gameOn)
     if (gameOn) {
       pausePlayer = true
       setTimeout(function () { computerMove(board) }, 1000)
@@ -94,8 +92,6 @@ function didSomeoneWin (gameboard) {
 
 const checkForWinningSituation = (game) => {
   if (gameOn) {
-    console.log(game)
-    console.log(checkBoard)
     for (let i = 0; i < checkBoard.length; i++) {
       const win = checkBoard[i]
       const col1 = game[win[0]]
