@@ -5,6 +5,7 @@ const store = require('./store')
 
 // initial values to start game and use in functions
 let gameOn = true
+let pausePlayer = false
 let over = false
 let player = ''
 
@@ -28,7 +29,7 @@ const cellClick = function (user, cellIndex, board, eventTarget) {
   }
   // checks if the cell clicked is empty and if the game is still going
   // If this are both true, updates cell to player value, updates the game, and the next player to go.
-  if (board[cellIndex] === '' && gameOn) {
+  if (board[cellIndex] === '' && gameOn && !pausePlayer) {
     board[cellIndex] = player
     console.log(eventTarget)
     $(eventTarget).text(`${player}`)
@@ -50,6 +51,7 @@ const cellClick = function (user, cellIndex, board, eventTarget) {
       .catch(ui.onUpdateGameFailure)
     console.log(gameOn)
     if (gameOn) {
+      pausePlayer = true
       setTimeout(function () { computerMove(board) }, 1000)
     }
   } else if (!gameOn) {
@@ -195,6 +197,7 @@ const computerMove = function (gameboard) {
       .then(ui.onUpdateGameSuccess)
       .catch(ui.onUpdateGameFailure)
   }
+  pausePlayer = false
 }
 
 // resets the game with a newGame click
